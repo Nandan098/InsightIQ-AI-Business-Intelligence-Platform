@@ -39,7 +39,8 @@ Unlike traditional dashboards, InsightIQ combines **Business Intelligence**, **L
 
 #  Dashboard
 
-![Dashboard](images\KPI.png)
+<img width="1920" height="1080" alt="KPI" src="https://github.com/user-attachments/assets/4441c04b-6f9a-44a1-a101-824235189dff" />
+
 
 The dashboard provides:
 
@@ -53,7 +54,8 @@ The dashboard provides:
 
 #  Business Visualizations
 
-![Charts](images\Dashboard.png)
+<img width="1920" height="1080" alt="Dashboard" src="https://github.com/user-attachments/assets/a382bbfd-bd27-4ec0-80de-b59e8b464253" />
+
 
 Interactive visualizations include:
 
@@ -66,8 +68,8 @@ Interactive visualizations include:
 ---
 
 # AI Business Assistant
+<img width="1920" height="1080" alt="Chat" src="https://github.com/user-attachments/assets/24d18bbf-80c2-4049-a152-a8931099aaef" />
 
-![AI Chat](images\Chat.png)
 
 Users can ask business questions in natural language, such as:
 
@@ -89,7 +91,8 @@ The AI assistant performs analytics using **Pandas** and uses **Llama 3** to gen
 
 # AI Executive Report
 
-![PDF Report](images\Summary.png)
+<img width="1920" height="1080" alt="Summary" src="https://github.com/user-attachments/assets/4b44e350-be43-4f81-a2b3-2a229dfe19eb" />
+
 
 Generate professional PDF reports containing:
 
@@ -103,8 +106,8 @@ Generate professional PDF reports containing:
 
 # Chat with PDF (RAG)
 
-![RAG](images\chat_pdf.png)
-![RAG](images\chat_pdf_2.png)
+<img width="1920" height="1080" alt="chat_pdf" src="https://github.com/user-attachments/assets/baed9a0a-c513-4886-aace-860262b1fdd4" />
+<img width="1920" height="1080" alt="chat_pdf_2" src="https://github.com/user-attachments/assets/4a6cef10-5a79-4a81-8c1e-dbd53fb55a9a" />
 
 Users can upload documents such as:
 
@@ -126,6 +129,10 @@ Who is the CEO?
 ```
 
 ---
+
+# Features
+
+<img width="1920" height="1080" alt="Features" src="https://github.com/user-attachments/assets/088690e0-6226-4112-ba88-1f6085ddfa69" />
 
 # Project Architecture
 
