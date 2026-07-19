@@ -1,4 +1,4 @@
-# 📊 InsightIQ - AI Powered Business Intelligence Platform
+# InsightIQ - AI Powered Business Intelligence Platform
 
 <p align="center">
 
@@ -14,7 +14,7 @@
 
 ---
 
-## 📌 Overview
+##  Overview
 
 InsightIQ is an AI-powered Business Intelligence platform that enables users to upload business datasets, visualize KPIs, interact with data using natural language, generate executive reports, and query PDF documents using Retrieval-Augmented Generation (RAG).
 
@@ -39,7 +39,7 @@ Unlike traditional dashboards, InsightIQ combines **Business Intelligence**, **L
 
 #  Dashboard
 
-![Dashboard](images/dashboard.png)
+![Dashboard](images\KPI.png)
 
 The dashboard provides:
 
@@ -51,9 +51,9 @@ The dashboard provides:
 
 ---
 
-# 📈 Business Visualizations
+#  Business Visualizations
 
-![Charts](images/charts.png)
+![Charts](images\Dashboard.png)
 
 Interactive visualizations include:
 
@@ -65,9 +65,9 @@ Interactive visualizations include:
 
 ---
 
-# 🤖 AI Business Assistant
+# AI Business Assistant
 
-![AI Chat](images/chatbot.png)
+![AI Chat](images\Chat.png)
 
 Users can ask business questions in natural language, such as:
 
@@ -87,9 +87,9 @@ The AI assistant performs analytics using **Pandas** and uses **Llama 3** to gen
 
 ---
 
-# 📄 AI Executive Report
+# AI Executive Report
 
-![PDF Report](images/report.png)
+![PDF Report](images\Summary.png)
 
 Generate professional PDF reports containing:
 
@@ -101,9 +101,10 @@ Generate professional PDF reports containing:
 
 ---
 
-# 📚 Chat with PDF (RAG)
+# Chat with PDF (RAG)
 
-![RAG](images/rag.png)
+![RAG](images\chat_pdf.png)
+![RAG](images\chat_pdf_2.png)
 
 Users can upload documents such as:
 
@@ -126,7 +127,7 @@ Who is the CEO?
 
 ---
 
-# 🏗 Project Architecture
+# Project Architecture
 
 ```
                      User
@@ -166,7 +167,7 @@ Who is the CEO?
 
 ---
 
-# 🔄 Workflow
+#  Workflow
 
 ```
 Upload Dataset
@@ -192,7 +193,7 @@ Executive Report
 
 ---
 
-# 🛠 Tech Stack
+# Tech Stack
 
 | Category | Technology |
 |----------|------------|
@@ -209,7 +210,7 @@ Executive Report
 
 ---
 
-# 📂 Project Structure
+# Project Structure
 
 ```
 InsightIQ/
@@ -251,7 +252,7 @@ InsightIQ/
 
 ---
 
-# 🚀 Installation
+# Installation
 
 Clone the repository
 
@@ -285,7 +286,7 @@ streamlit run app.py
 
 ---
 
-# 🎯 Future Improvements
+#  Future Improvements
 
 - User Authentication
 - Multi-user Workspace
@@ -298,7 +299,7 @@ streamlit run app.py
 
 ---
 
-# 💡 Skills Demonstrated
+# Skills Demonstrated
 
 - Business Intelligence
 - Data Analytics
@@ -314,18 +315,12 @@ streamlit run app.py
 
 ---
 
-# 📜 License
+#  License
 
 This project is licensed under the MIT License.
 
 ---
 
-# 👨‍💻 Author
+#  Author
 
-**Your Name**
-
-LinkedIn: https://linkedin.com/in/your-profile
-
-GitHub: https://github.com/your-username
-
-Email: your@email.com
+**Nandan Pandeyta**
