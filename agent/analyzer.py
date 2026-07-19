@@ -11,11 +11,9 @@ class DataAnalyzer:
     # ---------------------------------
 
     def _find_column(self, keyword):
-
         for col in self.df.columns:
             if keyword.lower() in col.lower():
                 return col
-
         return None
 
     # ---------------------------------
@@ -39,30 +37,21 @@ class DataAnalyzer:
     # ---------------------------------
 
     def total_sales(self):
-
         sales = self._find_column("sales")
-
         if sales is None:
             return None
-
         return float(self.df[sales].sum())
 
     def average_sales(self):
-
         sales = self._find_column("sales")
-
         if sales is None:
             return None
-
         return float(self.df[sales].mean())
 
     def total_profit(self):
-
         profit = self._find_column("profit")
-
         if profit is None:
             return None
-
         return float(self.df[profit].sum())
 
     # ---------------------------------
@@ -70,7 +59,6 @@ class DataAnalyzer:
     # ---------------------------------
 
     def group_analysis(self, group_keyword, metric_keyword, top_n=1):
-
         group_col = self._find_column(group_keyword)
         metric_col = self._find_column(metric_keyword)
 
@@ -91,11 +79,24 @@ class DataAnalyzer:
         return result.to_dict(), None
 
     # ---------------------------------
+    # Derived Business Metrics
+    # ---------------------------------
+
+    def top_region_by_sales(self):
+        """
+        Finds the region name with the highest total sales for agent/summary.py.
+        """
+        result, error = self.group_analysis("region", "sales", top_n=1)
+        if result and len(result) > 0:
+            # Extracts the dictionary key name (e.g., "West")
+            return list(result.keys())[0]
+        return "N/A"
+
+    # ---------------------------------
     # Monthly Trend
     # ---------------------------------
 
     def monthly_sales_trend(self):
-
         date_col = self._find_column("order date")
         sales_col = self._find_column("sales")
 
@@ -103,22 +104,21 @@ class DataAnalyzer:
             return None
 
         df = self.df.copy()
-
         df[date_col] = pd.to_datetime(df[date_col])
 
+        # Grouping and formatting keys to string prevents downstream JSON serialization errors
         result = (
             df.groupby(df[date_col].dt.to_period("M"))[sales_col]
             .sum()
         )
-
-        return result.astype(float).to_dict()
+        
+        return {str(k): float(v) for k, v in result.to_dict().items()}
 
     # ---------------------------------
     # Dataset Summary
     # ---------------------------------
 
     def dataset_summary(self):
-
         return {
             "Rows": self.row_count(),
             "Columns": self.column_count(),
@@ -127,4 +127,5 @@ class DataAnalyzer:
             "Total Sales": self.total_sales(),
             "Average Sales": self.average_sales(),
             "Total Profit": self.total_profit(),
+            "Top Region": self.top_region_by_sales(),
         }

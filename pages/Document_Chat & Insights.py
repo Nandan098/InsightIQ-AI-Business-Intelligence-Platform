@@ -4,7 +4,7 @@ from rag.loader import load_pdf
 from rag.vectorstore import build_vectorstore
 from rag.retriever import ask_pdf
 
-st.title("📄 Chat with PDF")
+st.title("Chat with PDF")
 
 pdf = st.file_uploader(
     "Upload PDF",

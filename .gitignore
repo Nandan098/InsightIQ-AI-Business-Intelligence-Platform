@@ -1,0 +1,23 @@
+# Ignore Streamlit local secrets (CRITICAL)
+.streamlit/secrets.toml
+
+# Ignore Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Ignore Python cache and bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore local data uploads or temporary PDFs generated during testing
+*.csv
+*.xlsx
+*.pdf
+
+# Ignore OS specific files
+.DS_Store
+Thumbs.db

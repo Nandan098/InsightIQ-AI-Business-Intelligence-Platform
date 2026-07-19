@@ -14,7 +14,7 @@ import plotly.express as px
 
 st.set_page_config(
     page_title="InsightIQ",
-    page_icon="📊",
+    page_icon="",
     layout="wide"
 )
 
@@ -75,9 +75,7 @@ st.subheader(" Key Features")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-
     st.success(" Smart Data Upload")
-
     st.write("""
 - CSV Support
 - Excel Support
@@ -85,7 +83,6 @@ with col1:
 """)
 
     st.success("Data Cleaning")
-
     st.write("""
 - Missing Value Detection
 - Duplicate Detection
@@ -93,9 +90,7 @@ with col1:
 """)
 
 with col2:
-
     st.success("Dashboard")
-
     st.write("""
 - KPIs
 - Interactive Charts
@@ -103,7 +98,6 @@ with col2:
 """)
 
     st.success("AI Assistant")
-
     st.write("""
 - Natural Language Queries
 - Business Explanations
@@ -111,9 +105,7 @@ with col2:
 """)
 
 with col3:
-
     st.success("AI Reports")
-
     st.write("""
 - Executive Summary
 - PDF Export
@@ -121,7 +113,6 @@ with col3:
 """)
 
     st.success("RAG")
-
     st.write("""
 - Chat with PDFs
 - Semantic Search
@@ -130,7 +121,7 @@ with col3:
 
 
 with st.sidebar:
-    st.title("📊 InsightIQ")
+    st.title("InsightIQ")
     st.caption("AI-Powered Business Intelligence")
     st.divider()
 
@@ -157,7 +148,7 @@ with st.sidebar:
     st.divider()
     st.caption("InsightIQ v1.0")
 
-st.title("📊 InsightIQ")
+st.title(" InsightIQ")
 
 uploaded_file = st.file_uploader(
     "Upload CSV or Excel",
@@ -165,6 +156,7 @@ uploaded_file = st.file_uploader(
 )
 
 if uploaded_file:
+
     df = load_data(uploaded_file)
     df = clean_data(df)
     st.session_state["df"] = df
@@ -202,85 +194,99 @@ if uploaded_file:
     st.markdown("## Business Dashboard")
 
 
-    # region chart
-
-    if columns["date"] and columns["sales"]:
-        date_col = columns["date"]
-        sales_col = columns["sales"]
-    
-        # Create a copy to avoid altering your original dataframe
-        temp_df = df.copy()
-    
-        # 1. Ensure the date column is in datetime format
-        temp_df[date_col] = pd.to_datetime(temp_df[date_col])
-    
-        # 2. Extract the month (Formatting as 'YYYY-MM' keeps chronological order correct)
-        temp_df['Month'] = temp_df[date_col].dt.strftime('%m')
-    
-        # 3. Group by the new 'Month' column and calculate the sum of sales
-        monthly_sales = temp_df.groupby('Month')[sales_col].sum().reset_index()
-    
-        # 4. Create the line chart
-        fig = px.line(
-            monthly_sales, 
-            x='Month', 
-            y=sales_col, 
-            title="Monthly Sales Trend",
-            markers=True # Adds dots to the line for each month
-        )
-    
-        # 5. Display in Streamlit
-        st.plotly_chart(fig, use_container_width=True)
-
-    if columns["category"] and columns["sales"]:
-        category_col = columns["category"]
-        sales_col = columns["sales"]
-    
-        # 1. Group by category and calculate the sum of sales
-        category_sales_df = df.groupby(category_col)[sales_col].sum().reset_index()
-    
-        # 2. Sort the values in descending order for a cleaner bar chart
-        category_sales_df = category_sales_df.sort_values(by=sales_col, ascending=False)
-    
-        # 3. Create the bar chart
-        fig = px.bar(
-            category_sales_df, 
-            x=category_col, 
-            y=sales_col, 
-            title="Total Sales by Category",
-            text_auto='.2s' # This automatically adds shortened labels (e.g., 1.5M, 20k) to the bars
-        )
-    
-        # 4. Display in Streamlit
-        st.plotly_chart(fig, use_container_width=True)
-
-
-    if columns["profit"]:
-        profit_col = columns["profit"]
+    # Everything underneath this spinner is now properly indented!
+    with st.spinner("Crunching the numbers..."):
         
-        # Create a histogram to show the distribution of profits
-        fig = px.histogram(
-            df, 
-            x=profit_col, 
-            title="Profit Distribution",
-            nbins=50,             # Adjusts the number of bars for better granularity
-            marginal="box"        # Adds a small box plot at the top to highlight outliers and the median
-        )
+        # 1. Line Chart
+        if columns["date"] and columns["sales"]:
+            date_col = columns["date"]
+            sales_col = columns["sales"]
         
-        # Display in Streamlit
-        st.plotly_chart(fig, use_container_width=True)
+            # Create a copy to avoid altering your original dataframe
+            temp_df = df.copy()
+        
+            # Ensure the date column is in datetime format
+            temp_df[date_col] = pd.to_datetime(temp_df[date_col])
+        
+            # Extract the month (Formatting as 'YYYY-MM' keeps chronological order correct)
+            temp_df['Month'] = temp_df[date_col].dt.strftime('%m')
+        
+            # Group by the new 'Month' column and calculate the sum of sales
+            monthly_sales = temp_df.groupby('Month')[sales_col].sum().reset_index()
+        
+            # Create the line chart
+            fig = px.line(
+                monthly_sales, 
+                x='Month', 
+                y=sales_col, 
+                title="Monthly Sales Trend",
+                markers=True # Adds dots to the line for each month
+            )
+        
+            # Display in Streamlit
+            st.plotly_chart(fig, width="stretch")
 
-    categorical_columns = df.select_dtypes(include="object").columns
+        # 2. Bar Chart
+        if columns["category"] and columns["sales"]:
+            category_col = columns["category"]
+            sales_col = columns["sales"]
+        
+            # Group by category and calculate the sum of sales
+            category_sales_df = df.groupby(category_col)[sales_col].sum().reset_index()
+        
+            # Sort the values in descending order for a cleaner bar chart
+            category_sales_df = category_sales_df.sort_values(by=sales_col, ascending=False)
+        
+            # Create the bar chart
+            fig = px.bar(
+                category_sales_df, 
+                x=category_col, 
+                y=sales_col, 
+                title="Total Sales by Category",
+                text_auto='.2s' 
+            )
+        
+            # Display in Streamlit
+            st.plotly_chart(fig, width="stretch")
+
+        # 3. Histogram (Fixed Indentation here!)
+        if columns["profit"]:
+            profit_col = columns["profit"]
+            
+            # Drop empty rows just for this chart to lighten the load
+            clean_profit = df[profit_col].dropna()
+            
+            fig = px.histogram(
+                clean_profit, 
+                x=profit_col, 
+                title="Profit Distribution",
+                nbins=50
+            )
+            
+            st.plotly_chart(fig, width="stretch")
+            
+
+    # I also added "string" here to fix that Pandas warning you were getting earlier
+
+
+    categorical_columns = df.select_dtypes(include=["object", "string"]).columns
 
     selected_filters = {}
 
     for column in categorical_columns:
-        values = st.sidebar.multiselect(
-            column,
-            df[column].unique(),
-            default=df[column].unique()
-        )
-        selected_filters[column] = values
+        unique_vals = df[column].unique()
+        
+        # FIX: Only create a filter if there are fewer than 50 unique items
+        if len(unique_vals) < 50: 
+            values = st.sidebar.multiselect(
+                f"Filter by {column}",
+                unique_vals,
+                default=unique_vals
+            )
+            selected_filters[column] = values
+        else:
+            # Skip massive columns like Order IDs or Names to prevent freezing
+            pass
 
     filtered_df = df.copy()
 

@@ -28,11 +28,7 @@ def clean_data(df):
     for col in df.columns:
         if "date" in col.lower():
             try:
-                df[col] = pd.to_datetime(
-                df[col],
-                dayfirst=True,
-                errors="coerce")
-
+                df[col] = pd.to_datetime(df[col], dayfirst=False, format='mixed')
             except:
                 pass
 
